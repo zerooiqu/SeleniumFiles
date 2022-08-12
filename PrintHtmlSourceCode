@@ -1,0 +1,55 @@
+package Selenium_topic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+class PrintHTMLsourceCode {
+	static {
+		System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+	}
+
+	static void calling(WebDriver driver) throws InterruptedException {
+		driver.get("https://www.google.com/");
+		Thread.sleep(1000);
+		driver.manage().deleteAllCookies();
+		String URL = driver.getCurrentUrl();
+		if (URL.equals("https://www.google.com/")) {
+			System.out.println("true");
+
+		} else {
+			System.out.println("false");
+		}
+		String ps = driver.getPageSource();
+		System.out.println(ps);
+		driver.manage().window().minimize();
+		driver.manage().window().maximize();
+		
+		Thread.sleep(1000);
+		driver.navigate().to("\"C:\\Users\\papus\\OneDrive\\Desktop\\1st web page.html\"");
+		Thread.sleep(2000);
+		WebElement e= driver.findElement(By.tagName("a"));
+		e.click();
+		Thread.sleep(2000);
+				
+		
+		driver.quit();
+		
+		
+		}
+}
+package Selenium_topic;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+class PrintHTMLsourceCode2 {
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver d1= new ChromeDriver();
+		PrintHTMLsourceCode.calling(d1);
+		
+		WebDriver d2= new FirefoxDriver();
+		PrintHTMLsourceCode.calling(d2); 
+	}
+}
